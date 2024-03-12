@@ -1,0 +1,59 @@
+{
+  "name": "react-colorblender",
+  "version": "1.0.0",
+  "description": "React color picker with colorblender",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Skyleen77/react-colorblender.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Skyleen77/react-colorblender/issues"
+  },
+  "homepage": "https://github.com/Skyleen77/react-colorblender",
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.mjs"
+    },
+    "./css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs",
+    "start": "rollup -c -w --bundleConfigAsCjs"
+  },
+  "keywords": [
+    "react",
+    "color",
+    "picker",
+    "color picker"
+  ],
+  "author": "Skyleen",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/node": "^20.1.2",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "eslint": "^8.57.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^3.21.6",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "colorblender": "^2.6.1"
+  }
+}

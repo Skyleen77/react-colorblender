@@ -6,7 +6,7 @@
 
   <p>A powerful color picker in react.</p>
 
-  <img src="https://cdn.sanity.io/images/k65uhcn4/production/193eecff2235715686bbf161f495bcd1c8a227e9-590x700.png" width="500" />
+  <img src="https://cdn.sanity.io/images/k65uhcn4/production/cc585b55855e60bac91834431fd607f14973ef6c-590x700.gif" width="500" />
 </div>
 
 ## Installation

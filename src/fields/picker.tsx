@@ -1,26 +1,32 @@
+import type { ModelComponentProps } from '../types';
+
 import { Alpha } from './elements/alpha';
-import { ModelComponentProps } from '../color-picker';
 import { Fields } from '.';
 import { Hue } from './elements/hue';
-import { Saturation } from './elements/saturation';
 import { HexInput } from './hex';
+import { Saturation } from './elements/saturation';
 
 export const Picker = ({
-  height,
   hideAlpha,
+  height,
   color,
   onChange,
 }: ModelComponentProps) => {
   return (
     <>
-      <div>
-        <Saturation height={height} color={color} onChange={onChange} />
-      </div>
+      <Saturation
+        height={height}
+        color={color}
+        onChange={onChange}
+        hideAlpha={hideAlpha}
+      />
 
       <div className="colorblender-picker-body">
-        <Hue color={color} onChange={onChange} />
+        <Hue color={color} onChange={onChange} hideAlpha={hideAlpha} />
 
-        {!hideAlpha && <Alpha color={color} onChange={onChange} />}
+        {!hideAlpha && (
+          <Alpha color={color} onChange={onChange} hideAlpha={hideAlpha} />
+        )}
 
         <section>
           <Fields

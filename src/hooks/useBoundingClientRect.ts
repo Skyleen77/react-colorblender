@@ -1,15 +1,15 @@
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 interface Size {
-  readonly width: number;
-  readonly height: number;
+  width: number;
+  height: number;
 }
 
 interface Position {
-  readonly left: number;
-  readonly right: number;
-  readonly top: number;
-  readonly bottom: number;
+  left: number;
+  right: number;
+  top: number;
+  bottom: number;
 }
 
 export function useBoundingClientRect<T extends HTMLElement>(): [

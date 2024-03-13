@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* .colorblender-picker {
+  --colorblender-border: red;
+  --colorblender-border-hover: orange;
+  --colorblender-background: blue;
+  --colorblender-background-hover: skyblue;
+  --colorblender-text: pink;
+  --colorblender-text-hover: violet;
+}
+
+.colorblender-picker.dark, .dark .colorblender-picker {
+  --colorblender-border: orange;
+  --colorblender-border-hover: red;
+  --colorblender-background: skyblue;
+  --colorblender-background-hover: blue;
+  --colorblender-text: violet;
+  --colorblender-text-hover: pink;
+} */

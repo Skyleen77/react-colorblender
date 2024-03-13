@@ -1,20 +1,20 @@
 import type { AnyColor, HexColor, HsvaColor, RgbaColor } from 'colorblender';
+import type { Color } from '../helpers/color';
 
-import React, { FC, memo, useCallback, useEffect, useState } from 'react';
-import { Color } from '../helpers/color';
+import { FC, memo, useCallback, useEffect, useState } from 'react';
 
 interface FieldsProps {
-  readonly hideAlpha: boolean;
-  readonly height?: number;
-  readonly color: Color;
-  readonly onChange: (color: Color) => void;
+  hideAlpha: boolean;
+  height?: number;
+  color: Color;
+  onChange: (color: Color) => void;
   Component: FC<FieldsComponent>;
 }
 
 type FieldType = 'hex' | 'rgb' | 'hsv';
 interface FieldValue {
   value: AnyColor;
-  inputted: boolean;
+  inputted?: boolean;
 }
 
 interface Field extends Record<FieldType, FieldValue> {
@@ -24,11 +24,9 @@ interface Field extends Record<FieldType, FieldValue> {
   };
   rgb: {
     value: RgbaColor;
-    inputted: boolean;
   };
   hsv: {
     value: HsvaColor;
-    inputted: boolean;
   };
 }
 
@@ -37,9 +35,9 @@ export interface FieldsComponent {
   fields: Field;
   setFields: React.Dispatch<React.SetStateAction<Field>>;
   onChange: (color: Color) => void;
-  onInputFocus: (field: FieldType) => () => void;
-  onInputBlur: (field: FieldType) => () => void;
-  hideAlpha?: boolean;
+  onInputFocus: (field: FieldType) => void;
+  onInputBlur: (field: FieldType) => void;
+  hideAlpha: boolean;
 }
 
 export const Fields = memo(
@@ -51,11 +49,9 @@ export const Fields = memo(
       },
       rgb: {
         value: color.rgb,
-        inputted: false,
       },
       hsv: {
         value: color.hsv,
-        inputted: false,
       },
     });
 
@@ -68,43 +64,23 @@ export const Fields = memo(
       }
     }, [fields.hex.inputted, color]);
 
-    useEffect(() => {
-      if (!fields.rgb.inputted) {
-        setFields((fields) => ({
-          ...fields,
-          rgb: { ...fields.rgb, value: color.rgb },
-        }));
-      }
-    }, [fields.rgb.inputted, color]);
-
-    useEffect(() => {
-      if (!fields.hsv.inputted) {
-        setFields((fields) => ({
-          ...fields,
-          hsv: { ...fields.hsv, value: color.hsv },
-        }));
-      }
-    }, [fields.hsv.inputted, color]);
-
     const onInputFocus = useCallback(
-      <T extends keyof typeof fields>(field: T) =>
-        () => {
-          setFields((fields) => ({
-            ...fields,
-            [field]: { ...fields[field], inputted: true },
-          }));
-        },
+      <T extends keyof typeof fields>(field: T) => {
+        setFields((fields) => ({
+          ...fields,
+          [field]: { ...fields[field], inputted: true },
+        }));
+      },
       [],
     );
 
     const onInputBlur = useCallback(
-      <T extends keyof typeof fields>(field: T) =>
-        () => {
-          setFields((fields) => ({
-            ...fields,
-            [field]: { ...fields[field], inputted: false },
-          }));
-        },
+      <T extends keyof typeof fields>(field: T) => {
+        setFields((fields) => ({
+          ...fields,
+          [field]: { ...fields[field], inputted: false },
+        }));
+      },
       [],
     );
 

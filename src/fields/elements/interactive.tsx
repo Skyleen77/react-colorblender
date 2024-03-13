@@ -3,8 +3,8 @@ import { useBoundingClientRect } from '../../hooks/useBoundingClientRect';
 import { clamp } from '../../helpers/utils';
 
 interface InteractiveProps {
-  readonly onCoordinateChange: (x: number, y: number) => void;
-  readonly children: React.ReactNode;
+  onCoordinateChange: (x: number, y: number) => void;
+  children: React.ReactNode;
 }
 
 export const Interactive = memo(

@@ -4,13 +4,14 @@ import { Interactive } from './interactive';
 import { Color } from '../../helpers/color';
 
 interface SaturationProps {
-  readonly height: number;
-  readonly color: Color;
-  readonly onChange: (color: Color) => void;
+  height: number;
+  color: Color;
+  onChange: (color: Color) => void;
+  hideAlpha: boolean;
 }
 
 export const Saturation = memo(
-  ({ height, color, onChange }: SaturationProps) => {
+  ({ height, color, onChange, hideAlpha }: SaturationProps) => {
     const [saturationRef, { width }] = useBoundingClientRect<HTMLDivElement>();
 
     const position = useMemo(() => {
@@ -29,6 +30,7 @@ export const Saturation = memo(
             v: 100 - (y / height) * 100,
           },
           'hsv',
+          hideAlpha,
         );
 
         onChange(nextColor);

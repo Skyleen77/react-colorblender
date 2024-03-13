@@ -1,110 +1,110 @@
-#colorblender-picker {
-  --colorblender-border: #e5e7eb;
-  --colorblender-border-hover: #374151;
-  --colorblender-background: #ffffff;
-  --colorblender-background-hover: #f3f4f6;
-  --colorblender-text: #374151;
-  --colorblender-text-hover: #000000;
-  --colorblender-pointer: #ffffff;
+.colorblender-picker {
+  --colorblender-internal-border: #e5e7eb;
+  --colorblender-internal-border-hover: #374151;
+  --colorblender-internal-background: #ffffff;
+  --colorblender-internal-background-hover: #f3f4f6;
+  --colorblender-internal-text: #374151;
+  --colorblender-internal-text-hover: #000000;
+  --colorblender-internal-pointer: #ffffff;
+  --colorblender-internal-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: var(--colorblender-background);
+  background-color: var(--colorblender-background, var(--colorblender-internal-background));
   border-radius: 0.75rem;
 }
 
-#colorblender-picker.dark, .dark #colorblender-picker {
-  --colorblender-border: #374151;
-  --colorblender-border-hover: #e5e7eb;
-  --colorblender-background: #111827;
-  --colorblender-background-hover: #1f2937;
-  --colorblender-text: #e5e7eb;
-  --colorblender-text-hover: #ffffff;
-  --colorblender-pointer: #ffffff;
+.colorblender-picker.dark, .dark .colorblender-picker {
+  --colorblender-internal-border: #374151;
+  --colorblender-internal-border-hover: #e5e7eb;
+  --colorblender-internal-background: #111827;
+  --colorblender-internal-background-hover: #1f2937;
+  --colorblender-internal-text: #e5e7eb;
+  --colorblender-internal-text-hover: #ffffff;
+  --colorblender-internal-pointer: #ffffff;
+  --colorblender-internal-shadow: 0 1px 3px 0 rgb(255 255 255 / 0.1), 0 1px 2px -1px rgb(255 255 255 / 0.1);
 }
 
-#colorblender-picker .colorblender-picker-input {
+.colorblender-picker .colorblender-picker-input {
   display: flex;
-  height: 2.5rem;
+  height: 2.25rem;
   width: 100%;
   border-radius: 0.5rem;
   border: 1px solid;
-  background-color: var(--colorblender-background);
-  padding: 0.5rem 0.75rem;
+  background-color: var(--colorblender-background, var(--colorblender-internal-background));
+  padding: 0.45rem 0.65rem;
   font-size: 0.875rem;
-  color: var(--colorblender-text);
+  color: var(--colorblender-text, var(--colorblender-internal-text));
   outline: none;
-  border: 1px solid var(--colorblender-border);
+  border: 1px solid var(--colorblender-border, var(--colorblender-internal-border));
 }
 
-#colorblender-picker .colorblender-picker-input:focus-visible {
-  border: 1px solid var(--colorblender-border-hover);
-  outline: 1px solid var(--colorblender-border-hover);
+.colorblender-picker .colorblender-picker-input:focus-visible {
+  border: 1px solid var(--colorblender-border-hover, var(--colorblender-internal-border-hover));
+  outline: 1px solid var(--colorblender-border-hover, var(--colorblender-internal-border-hover));
 }
 
-#colorblender-picker .colorblender-picker-input:disabled {
+.colorblender-picker .colorblender-picker-input:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
 
-#colorblender-picker .colorblender-picker-input .file {
+.colorblender-picker .colorblender-picker-input .file {
   border: none;
   background: transparent;
   font-size: 0.875rem;
   font-weight: medium;
 }
 
-#colorblender-picker .colorblender-picker-saturation {
+.colorblender-picker .colorblender-picker-saturation {
   position: relative;
   width: 100%;
-  /* border-top-right-radius: calc(0.75rem + 1px);
-  border-top-left-radius: calc(0.75rem + 1px); */
   border-top-right-radius: calc(0.75rem - 1px);
   border-top-left-radius: calc(0.75rem - 1px);
   background-image: linear-gradient(to bottom, transparent, black), linear-gradient(to right, white, transparent);
   cursor: all-scroll;
 }
 
-#colorblender-picker .colorblender-picker-pointer {
+.colorblender-picker .colorblender-picker-pointer {
   position: absolute;
   width: 1.25rem;
   height: 1.25rem;
-  border: 2px solid var(--colorblender-pointer);
+  border: 2px solid var(--colorblender-pointer, var(--colorblender-internal-pointer));
   border-radius: 9999px;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  box-shadow: var(--colorblender-shadow, var(--colorblender-internal-shadow));
 }
 
-#colorblender-picker .colorblender-picker-saturation .colorblender-picker-pointer {
+.colorblender-picker .colorblender-picker-saturation .colorblender-picker-pointer {
   transform: translate(-0.625rem, -0.625rem);
 }
 
-#colorblender-picker .colorblender-picker-interactive {
+.colorblender-picker .colorblender-picker-interactive {
   width: 100%;
   height: 100%;
   user-select: none;
   touch-action: none;
 }
 
-#colorblender-picker .colorblender-picker-slider-wrapper {
+.colorblender-picker .colorblender-picker-slider-wrapper {
   display: flex;
   flex-direction: column;
   row-gap: 0.5rem;
 }
 
-#colorblender-picker .colorblender-picker-slider-label {
+.colorblender-picker .colorblender-picker-slider-label {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-size: 14px;
-  color: var(--colorblender-text)
+  color: var(--colorblender-text, var(--colorblender-internal-text));
 }
 
-#colorblender-picker .colorblender-picker-slider-label p {
+.colorblender-picker .colorblender-picker-slider-label p {
   line-height: 1;
 }
 
-#colorblender-picker .colorblender-picker-slider {
+.colorblender-picker .colorblender-picker-slider {
   position: relative;
   width: 100%;
   height: 0.75rem;
@@ -112,11 +112,11 @@
   cursor: ew-resize;
 }
 
-#colorblender-picker .colorblender-picker-slider .colorblender-picker-pointer {
+.colorblender-picker .colorblender-picker-slider .colorblender-picker-pointer {
   transform: translate(-0.625rem, -0.25rem);
 }
 
-#colorblender-picker .colorblender-picker-body {
+.colorblender-picker .colorblender-picker-body {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -124,70 +124,30 @@
   gap: 0.75rem;
 }
 
-#colorblender-picker .colorblender-picker-body .colorblender-picker-section-hue {
+.colorblender-picker .colorblender-picker-body .colorblender-picker-section-hue {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-#colorblender-picker .colorblender-picker-hex {
+.colorblender-picker .colorblender-picker-hex {
   display: flex;
   flex-direction: column;
   flex: 1;
-  color: var(--colorblender-text);
+  color: var(--colorblender-text, var(--colorblender-internal-text));
 }
 
-#colorblender-picker .colorblender-picker-hex .colorblender-picker-hex-input-wrapper {
-  position: relative;
-}
-
-#colorblender-picker .colorblender-picker-hex .colorblender-picker-hex-input-wrapper .colorblender-picker-hex-input {
-  position: absolute;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  transform: translateY(-50%);
-  top: 50%;
+.colorblender-picker .colorblender-picker-color-preview {
+  border: 1px solid var(--colorblender-border, var(--colorblender-internal-border));
   border-radius: 0.35rem;
   width: 1.75rem;
   height: 1.75rem;
-  right: 0.375rem;
 }
 
-#colorblender-picker .colorblender-picker-selector-models-wrapper {
-  border-top-left-radius: calc(0.75rem - 1px);
-  border-top-right-radius: calc(0.75rem - 1px);
-  background-color: var(--colorblender-background);
-  position: absolute;
-  inset: 0;
-  bottom: 2.65rem;
-  overflow: hidden;
-}
-
-#colorblender-picker .colorblender-picker-selector-models {
-  overflow-y: auto;
-  height: 100%;
-}
-
-#colorblender-picker .colorblender-picker-selector-model {
-  height: 2.65rem;
-  padding: 0.75rem;
-  font-size: 14px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  color: var(--colorblender-text)
-}
-
-#colorblender-picker .colorblender-picker-selector-model:hover,
-#colorblender-picker .colorblender-picker-selector-model.active {
-  background-color: var(--colorblender-background-hover);
-}
-
-#colorblender-picker .colorblender-picker-bottom {
-  background-color: var(--colorblender-background);
+.colorblender-picker .colorblender-picker-bottom {
+  border-top: 1px solid var(--colorblender-border, var(--colorblender-internal-border));
   border-bottom-left-radius: 0.75rem;
   border-bottom-right-radius: 0.75rem;
-  border-top: 1px solid var(--colorblender-border);
   display: flex;
   align-items: center;
   height: 2.65rem;
@@ -195,36 +155,95 @@
   justify-content: space-between;
 }
 
-#colorblender-picker .colorblender-picker-selector {
-  display: flex;
-  align-items: center;
-  column-gap: 3px;
-  font-size: 14px;
-  color: var(--colorblender-text)
+.colorblender-picker .colorblender-picker-dropdown-overlay {
+  position: absolute;
+  z-index: 40;
+  inset: 0;
 }
 
-#colorblender-picker .colorblender-picker-action-buttons {
+.colorblender-picker .colorblender-picker-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  column-gap: 3px;
+  font-size: 14px;
+  color: var(--colorblender-text, var(--colorblender-internal-text));
+  user-select: none;
+}
+
+.colorblender-picker .colorblender-picker-dropdown svg {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.colorblender-picker .colorblender-picker-dropdown:focus-visible {
+  outline: none;
+}
+
+.colorblender-picker .colorblender-picker-dropdown-menu {
+  position: absolute;
+  bottom: 1.65rem;
+  background-color: var(--colorblender-background, var(--colorblender-internal-background));
+  z-index: 50;
+  min-width: 8rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  box-shadow: var(--colorblender-shadow, var(--colorblender-internal-shadow));
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.2rem;
+  transition-property: opacity, visibility;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.colorblender-picker .colorblender-picker-dropdown-menu.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.colorblender-picker .colorblender-picker-dropdown-menu .colorblender-picker-dropdown-menu-item {
+  background-color: var(--colorblender-background, var(--colorblender-internal-background));
+  display: flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  font-size: 14px;
+  border-radius: 0.35rem;
+  width: 100%;
+}
+
+.colorblender-picker .colorblender-picker-dropdown-menu .colorblender-picker-dropdown-menu-item:hover,
+.colorblender-picker .colorblender-picker-dropdown-menu .colorblender-picker-dropdown-menu-item.active {
+  background-color: var(--colorblender-background-hover, var(--colorblender-internal-background-hover));
+}
+
+.colorblender-picker .colorblender-picker-action-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
   column-gap: 15px;
 }
 
-#colorblender-picker button {
-  color: var(--colorblender-text);
+.colorblender-picker button {
+  color: var(--colorblender-text, var(--colorblender-internal-text));
 }
 
-#colorblender-picker svg {
+.colorblender-picker svg {
   stroke: 'currentColor';
   height: 16px;
   width: 16px;
 }
 
-#colorblender-picker button:hover,
-#colorblender-picker button.active {
-  color: var(--colorblender-text-hover);
+.colorblender-picker button:hover,
+.colorblender-picker button.active {
+  color: var(--colorblender-text-hover, var(--colorblender-internal-text-hover));
 }
 
-#colorblender-picker .hide {
+.colorblender-picker .hide {
   display: none;
 }

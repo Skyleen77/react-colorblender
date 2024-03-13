@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 
 export interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
   backgroundColor: string;
@@ -6,7 +6,7 @@ export interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
   position: { x: number };
 }
 
-const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
+const Slider = forwardRef<HTMLDivElement, SliderProps>(
   ({ backgroundColor, pointerColor, position, ...props }, ref) => {
     return (
       <div

@@ -1,14 +1,15 @@
+import type { ElementProps } from '../../../types';
+
 import { memo, useCallback, useMemo } from 'react';
 import { Color } from '../../../helpers/color';
 import { useBoundingClientRect } from '../../../hooks/useBoundingClientRect';
 import { Interactive } from '../interactive';
 import { colorblender } from 'colorblender';
 import { WithLabel } from '../with-label';
-import { ElementProps } from '../../../types';
 import { Slider } from '../../ui/slider';
 
 export const Saturation = memo(
-  ({ color, onChange, withLabel }: ElementProps) => {
+  ({ color, onChange, hideAlpha, withLabel }: ElementProps) => {
     const [ref, { width }] = useBoundingClientRect<HTMLDivElement>();
 
     const position = useMemo(() => {
@@ -24,6 +25,7 @@ export const Saturation = memo(
             s: (x / width) * 100,
           },
           'hsv',
+          hideAlpha,
         );
 
         onChange(nextColor);

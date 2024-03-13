@@ -1,13 +1,14 @@
+import type { ElementProps } from '../../types';
+
 import { memo, useCallback, useMemo } from 'react';
 import { useBoundingClientRect } from '../../hooks/useBoundingClientRect';
 import { Interactive } from './interactive';
 import { Color } from '../../helpers/color';
 import { WithLabel } from './with-label';
-import { ElementProps } from '../../types';
 import { Slider } from '../ui/slider';
 
 export const Hue = memo(
-  ({ color, onChange, withLabel = false }: ElementProps) => {
+  ({ color, onChange, hideAlpha, withLabel = false }: ElementProps) => {
     const [ref, { width }] = useBoundingClientRect<HTMLDivElement>();
 
     const position = useMemo(() => {
@@ -24,6 +25,7 @@ export const Hue = memo(
             h: (x / width) * 360,
           },
           'hsv',
+          hideAlpha,
         );
 
         onChange(nextColor);

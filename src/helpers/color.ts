@@ -1,7 +1,9 @@
 import type { HexColor, HsvaColor, RgbaColor } from 'colorblender';
+import type { Models } from '../types';
+
 import { colorblender } from 'colorblender';
 import { round, roundColor } from './utils';
-import { Models, models } from '../types';
+import { models } from '../types';
 
 type ColorType = HexColor | RgbaColor | HsvaColor;
 
@@ -12,14 +14,19 @@ export class Color {
   public hsv: HsvaColor;
   public hsvString: string;
 
-  constructor(color: ColorType, model: Models) {
-    const instance = colorblender(color);
+  constructor(color: ColorType, model: Models, hideAlpha = false) {
+    const instance = hideAlpha
+      ? colorblender(color).alpha(1)
+      : colorblender(color);
 
     if (typeof color === 'string') {
-      this[model] = color as any;
+      this[model] = instance.hex() as any;
     } else if (color.a !== undefined) {
       const { a, ...colorWithoutAlpha } = color;
-      this[model] = { ...roundColor(colorWithoutAlpha), a: round(a, 2) } as any;
+      this[model] = {
+        ...roundColor(colorWithoutAlpha),
+        a: hideAlpha ? 1 : round(a, 2),
+      } as any;
     } else {
       this[model] = roundColor(color) as any;
     }

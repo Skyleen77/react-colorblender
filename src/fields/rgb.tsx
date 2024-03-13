@@ -1,4 +1,4 @@
-import type { ModelComponentProps } from '../color-picker';
+import type { ModelComponentProps } from '../types';
 import type { FieldsComponent } from '.';
 import { Fields } from '.';
 import { Alpha } from './elements/alpha';
@@ -9,10 +9,22 @@ import { Blue } from './elements/rgb/blue';
 const RgbInput = ({ color, onChange, hideAlpha }: FieldsComponent) => {
   return (
     <div className="colorblender-picker-body">
-      <Red color={color} onChange={onChange} withLabel />
-      <Green color={color} onChange={onChange} withLabel />
-      <Blue color={color} onChange={onChange} withLabel />
-      {!hideAlpha && <Alpha color={color} onChange={onChange} withLabel />}
+      <Red color={color} onChange={onChange} hideAlpha={hideAlpha} withLabel />
+      <Green
+        color={color}
+        onChange={onChange}
+        hideAlpha={hideAlpha}
+        withLabel
+      />
+      <Blue color={color} onChange={onChange} hideAlpha={hideAlpha} withLabel />
+      {!hideAlpha && (
+        <Alpha
+          color={color}
+          onChange={onChange}
+          hideAlpha={hideAlpha}
+          withLabel
+        />
+      )}
     </div>
   );
 };

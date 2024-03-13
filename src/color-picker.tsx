@@ -1,30 +1,14 @@
-import { memo, useCallback, useMemo, useState } from 'react';
-import { Color } from './helpers/color';
-import { ChevronDown } from './icons/chevron-down';
-import { Copy } from './icons/copy';
-import { cn } from './helpers/utils';
+import type { Color } from './helpers/color';
+import type { ColorPickerProps, ModelComponents } from './types';
+
+import { memo, useMemo, useState } from 'react';
 import { Picker } from './fields/picker';
-import { Check } from './icons/check';
 import { Hsv } from './fields/hsv';
 import { Rgb } from './fields/rgb';
+import { ToolBar } from './tool-bar';
+import { cn } from './helpers/utils';
 
-export interface ColorPickerProps {
-  readonly width?: number;
-  readonly hideAlpha?: boolean;
-  readonly hideInput?: boolean;
-  readonly color: Color;
-  readonly onChange: (color: Color) => void;
-  readonly className?: string;
-}
-
-export type ModelComponentProps = Omit<
-  Required<ColorPickerProps>,
-  'className' | 'hideInput'
-> & {
-  readonly height: number;
-};
-
-const modelComponents = {
+const modelComponents: ModelComponents = {
   'Picker': {
     component: Picker,
     copy: (color: Color) => color.hex,
@@ -43,7 +27,6 @@ export const ColorPicker = memo(
   ({
     width = 250,
     hideAlpha = false,
-    hideInput = false,
     color,
     onChange,
     className,
@@ -51,7 +34,6 @@ export const ColorPicker = memo(
     const [selectedModel, setSelectedModel] =
       useState<keyof typeof modelComponents>('Picker');
     const [selectModels, setSelectModels] = useState(false);
-    const [copied, setCopied] = useState(false);
     const height = useMemo(() => width / 1.67, [width]);
 
     const renderModel = () => {
@@ -68,70 +50,30 @@ export const ColorPicker = memo(
       );
     };
 
-    const copy = useCallback(() => {
-      const toCopy = modelComponents[selectedModel].copy(color);
-      navigator.clipboard.writeText(toCopy);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }, [color, selectedModel]);
-
     return (
       <div
-        id="colorblender-picker"
-        className={className}
+        className={cn('colorblender-picker', className)}
         style={{
           width: `${width}px`,
         }}
       >
+        {selectModels && (
+          <div
+            className="colorblender-picker-dropdown-overlay"
+            onClick={() => setSelectModels(false)}
+          />
+        )}
+
         {renderModel()}
 
-        {!hideInput && (
-          <>
-            {selectModels && (
-              <div className="colorblender-picker-selector-models-wrapper">
-                <div className="colorblender-picker-selector-models">
-                  {Object.keys(modelComponents).map(
-                    (model: keyof typeof modelComponents) => (
-                      <button
-                        key={model}
-                        className={cn(
-                          'colorblender-picker-selector-model',
-                          selectedModel === model && 'active',
-                        )}
-                        onClick={() => {
-                          setSelectedModel(model);
-                          setSelectModels(false);
-                        }}
-                      >
-                        {model}
-                      </button>
-                    ),
-                  )}
-                </div>
-              </div>
-            )}
-            <div className="colorblender-picker-bottom">
-              <div className="colorblender-picker-action-buttons">
-                <button onClick={copy}>{copied ? <Check /> : <Copy />}</button>
-              </div>
-
-              <button
-                onClick={() => setSelectModels((prev) => !prev)}
-                className={cn(
-                  'colorblender-picker-selector',
-                  selectModels && 'active',
-                )}
-              >
-                {selectedModel}{' '}
-                <ChevronDown
-                  style={{
-                    transform: selectModels ? 'rotate(180deg)' : undefined,
-                  }}
-                />
-              </button>
-            </div>
-          </>
-        )}
+        <ToolBar
+          color={color}
+          modelComponents={modelComponents}
+          selectedModel={selectedModel}
+          setSelectedModel={setSelectedModel}
+          selectModels={selectModels}
+          setSelectModels={setSelectModels}
+        />
       </div>
     );
   },

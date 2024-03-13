@@ -1,5 +1,6 @@
-import type { ModelComponentProps } from '../color-picker';
+import type { ModelComponentProps } from '../types';
 import type { FieldsComponent } from '.';
+
 import { Fields } from '.';
 import { Saturation } from './elements/hsv/saturation';
 import { Hue } from './elements/hue';
@@ -9,10 +10,27 @@ import { Value } from './elements/hsv/value';
 const HsvInput = ({ color, onChange, hideAlpha }: FieldsComponent) => {
   return (
     <div className="colorblender-picker-body">
-      <Hue color={color} onChange={onChange} withLabel />
-      <Saturation color={color} onChange={onChange} withLabel />
-      <Value color={color} onChange={onChange} withLabel />
-      {!hideAlpha && <Alpha color={color} onChange={onChange} withLabel />}
+      <Hue color={color} onChange={onChange} hideAlpha={hideAlpha} withLabel />
+      <Saturation
+        color={color}
+        onChange={onChange}
+        hideAlpha={hideAlpha}
+        withLabel
+      />
+      <Value
+        color={color}
+        onChange={onChange}
+        hideAlpha={hideAlpha}
+        withLabel
+      />
+      {!hideAlpha && (
+        <Alpha
+          color={color}
+          onChange={onChange}
+          hideAlpha={hideAlpha}
+          withLabel
+        />
+      )}
     </div>
   );
 };

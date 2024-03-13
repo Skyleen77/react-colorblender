@@ -1,5 +1,5 @@
 import './globals.css';
-import 'react-colorblender/css';
+import '../../src/style.css';
 
 export default function RootLayout({
   children,

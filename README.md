@@ -40,13 +40,16 @@ export default function Home() {
 
 ### ColorPicker
 
+```tsx
+<ColorPicker color={color} onChange={setColor} />
+```
+
 | Property  | Required | Description                  | Type                   | Default |
 | --------- | -------- | ---------------------------- | ---------------------- | ------- |
 | color     | true     | The color value              | Color                  | -       |
 | onChange  | true     | The color change event       | (color: Color) => void | -       |
 | width     | false    | The width of the picker      | number                 | 250     |
 | className | false    | The class name of the picker | string                 | -       |
-| hideInput | false    | Hide the input fields        | boolean                | false   |
 | hideAlpha | false    | Hide the alpha slider        | boolean                | false   |
 
 ### useColor
@@ -55,21 +58,20 @@ export default function Home() {
 const [color, setColor] = useColor('#ff0000');
 ```
 
-| Property | Description | Type                   |
-| -------- | ----------- | ---------------------- |
-| color    | The color   | Color                  |
-| setColor | The setter  | (color: Color) => void |
+| Args         | Description       | Type            |
+| ------------ | ----------------- | --------------- |
+| initialColor | The initial color | [Color](#color) |
 
 ### ColorPickerProps
 
 ```typescript
 interface ColorPickerProps {
-  readonly width?: number;
-  readonly hideAlpha?: boolean;
-  readonly hideInput?: boolean;
-  readonly color: Color;
-  readonly onChange: (color: Color) => void;
-  readonly className?: string;
+  width?: number;
+  hideAlpha?: boolean;
+  hideInput?: boolean;
+  color: Color;
+  onChange: (color: Color) => void;
+  className?: string;
 }
 ```
 
@@ -86,9 +88,56 @@ class Color {
   rgbString: string;
   hsv: HsvaColor;
   hsvString: string;
+
   constructor(color: ColorType, model: Models);
 }
 ```
+
+### HexColor
+
+```typescript
+type HexColor = string;
+```
+
+### RgbaColor
+
+```typescript
+interface RgbaColor {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+}
+```
+
+### HsvaColor
+
+```typescript
+interface HsvaColor {
+  h: number;
+  s: number;
+  v: number;
+  a: number;
+}
+```
+
+## Roadmap
+
+- [x] Picker with HEX
+- [x] Alpha
+- [x] RGB
+- [x] HSV
+- [ ] HSL
+- [ ] HWB
+- [ ] CMYK
+- [ ] XYZ
+- [ ] LAB
+- [ ] LCH
+- [x] Copy color
+- [x] Custom css variables
+- [ ] Pick color from page
+- [ ] Multiple color models with useColor hook
+- [ ] And more...
 
 ## Issues
 

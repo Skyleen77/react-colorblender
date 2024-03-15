@@ -1,15 +1,15 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 interface Size {
-  readonly width: number;
-  readonly height: number;
+  width: number;
+  height: number;
 }
 
 interface Position {
-  readonly left: number;
-  readonly right: number;
-  readonly top: number;
-  readonly bottom: number;
+  left: number;
+  right: number;
+  top: number;
+  bottom: number;
 }
 
 export function useBoundingClientRect<T extends HTMLElement>(): [
@@ -19,9 +19,12 @@ export function useBoundingClientRect<T extends HTMLElement>(): [
 ] {
   const ref = useRef<T>(null);
 
-  const [_, setResizeCounter] = useState(0);
+  const [resizeCounter, setResizeCounter] = useState(0);
 
-  const onResize = () => setResizeCounter((resizeCounter) => resizeCounter + 1);
+  const onResize = useCallback(
+    () => setResizeCounter((resizeCounter) => resizeCounter + 1),
+    [],
+  );
 
   useLayoutEffect(() => {
     window.addEventListener('resize', onResize, false);
@@ -36,9 +39,15 @@ export function useBoundingClientRect<T extends HTMLElement>(): [
     };
   }, [onResize]);
 
-  const size = ref.current?.getBoundingClientRect() ?? { width: 1, height: 1 };
+  const size = useMemo(() => {
+    const { width = 1, height = 1 } =
+      ref.current?.getBoundingClientRect() ?? ({} as DOMRect);
 
-  const getPosition = () => {
+    return { width, height };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resizeCounter]);
+
+  const getPosition = useCallback(() => {
     const {
       left = 1,
       right = 1,
@@ -47,7 +56,7 @@ export function useBoundingClientRect<T extends HTMLElement>(): [
     } = ref.current?.getBoundingClientRect() ?? ({} as DOMRect);
 
     return { left, right, top, bottom };
-  };
+  }, []);
 
   return [ref, size, getPosition];
 }

@@ -14,3 +14,7 @@ export function useColor(
 
   return [color, setColor];
 }
+
+export function toColor(color: string): Color {
+  return new Color(color.toUpperCase(), 'hex');
+}

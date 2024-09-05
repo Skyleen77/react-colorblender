@@ -16,7 +16,7 @@ export interface ColorPickerProps {
   width?: number;
   hideAlpha?: boolean;
   color: Color;
-  onChange: (color: Color) => void;
+  onChange: (color: Color, initialColor?: string) => void;
   className?: string;
 }
 

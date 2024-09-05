@@ -165,7 +165,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   column-gap: 3px;
   font-size: 14px;
   color: var(--colorblender-text, var(--colorblender-internal-text));

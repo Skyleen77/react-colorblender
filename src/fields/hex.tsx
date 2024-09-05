@@ -25,7 +25,7 @@ export const HexInput = ({
         hex: { ...fields['hex'], value: hex },
       }));
 
-      onChange(new Color(hex, 'hex', hideAlpha));
+      onChange(new Color(hex, 'hex', hideAlpha), hex);
     },
     [onChange],
   );

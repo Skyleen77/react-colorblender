@@ -34,7 +34,7 @@ export interface FieldsComponent {
   color: Color;
   fields: Field;
   setFields: React.Dispatch<React.SetStateAction<Field>>;
-  onChange: (color: Color) => void;
+  onChange: (color: Color, internalHex: string) => void;
   onInputFocus: (field: FieldType) => void;
   onInputBlur: (field: FieldType) => void;
   hideAlpha: boolean;

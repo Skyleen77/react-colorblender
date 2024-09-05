@@ -1,14 +1,20 @@
 'use client';
 
 import { ColorPicker } from '../../src/color-picker';
-import { useColor } from '../../src/hooks/useColor';
+import { toColor, useColor } from '../../src/hooks/useColor';
 
 export default function Home() {
   const [color, setColor] = useColor('#ff0000');
 
   return (
     <main className="flex h-screen">
-      <div className="w-1/2 h-full flex items-center justify-center bg-gray-50">
+      <div className="w-1/2 h-full flex flex-col gap-y-4 items-center justify-center bg-gray-50">
+        <input
+          className="border border-gray-200 rounded-md p-2"
+          value={color.hex}
+          onChange={(e) => setColor(toColor(e.target.value))}
+        />
+
         <ColorPicker
           color={color}
           onChange={setColor}

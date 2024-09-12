@@ -39,7 +39,7 @@ export const HexInput = ({
   );
 
   return (
-    <div className="colorblender-picker-hex">
+    <div className="colorblender-picker-input-text colorblender-picker-input-hex">
       <Input
         id="hex"
         value={fields.hex.value}

@@ -2,6 +2,7 @@ import { memo, useCallback, useMemo } from 'react';
 import { useBoundingClientRect } from '../../hooks/useBoundingClientRect';
 import { Interactive } from './interactive';
 import { Color } from '../../helpers/color';
+import { limitValue } from '../../helpers/utils';
 
 interface SaturationProps {
   height: number;
@@ -15,8 +16,8 @@ export const Saturation = memo(
     const [saturationRef, { width }] = useBoundingClientRect<HTMLDivElement>();
 
     const position = useMemo(() => {
-      const x = (color.hsv.s / 100) * width;
-      const y = ((100 - color.hsv.v) / 100) * height;
+      const x = (limitValue(color.hsv.s, 0, 100) / 100) * width;
+      const y = ((100 - limitValue(color.hsv.v, 0, 100)) / 100) * height;
 
       return { x, y };
     }, [color.hsv.s, color.hsv.v, width, height]);

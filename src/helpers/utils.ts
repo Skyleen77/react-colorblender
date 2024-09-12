@@ -30,3 +30,13 @@ export function cn(
 ) {
   return classes.filter(Boolean).join(' ');
 }
+
+export function convertStringColorToArray(input: string) {
+  const sanitizedInput = input.replace(/,/g, '.');
+  const result = sanitizedInput.match(/-?\d+(\.\d+)?/g);
+  return result ? result.map(Number) : [];
+}
+
+export const limitValue = (value: number, min: number, max: number) => {
+  return Math.min(Math.max(value, min), max);
+};

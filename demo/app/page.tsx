@@ -1,6 +1,7 @@
 'use client';
 
 import { ColorPicker } from '../../src/color-picker';
+import { FullColorPicker } from '../../src/full-color-picker';
 import { toColor, useColor } from '../../src/hooks/useColor';
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
           onChange={(e) => setColor(toColor(e.target.value))}
         />
 
-        <ColorPicker
+        <FullColorPicker
           color={color}
           onChange={setColor}
           className="border border-gray-200"

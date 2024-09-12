@@ -4,6 +4,7 @@
   --colorblender-internal-background: #ffffff;
   --colorblender-internal-background-hover: #f3f4f6;
   --colorblender-internal-text: #374151;
+  --colorblender-internal-legend: #9ca3af;
   --colorblender-internal-text-hover: #000000;
   --colorblender-internal-pointer: #ffffff;
   --colorblender-internal-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -21,6 +22,7 @@
   --colorblender-internal-background: #111827;
   --colorblender-internal-background-hover: #1f2937;
   --colorblender-internal-text: #e5e7eb;
+  --colorblender-internal-legend: #4b5563;
   --colorblender-internal-text-hover: #ffffff;
   --colorblender-internal-pointer: #ffffff;
   --colorblender-internal-shadow: 0 1px 3px 0 rgb(255 255 255 / 0.1), 0 1px 2px -1px rgb(255 255 255 / 0.1);
@@ -130,7 +132,7 @@
   gap: 0.75rem;
 }
 
-.colorblender-picker .colorblender-picker-hex {
+.colorblender-picker .colorblender-picker-input-text {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -246,4 +248,40 @@
 
 .colorblender-picker .hide {
   display: none;
+}
+
+.colorblender-picker .colorblender-picker-full-picker-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.colorblender-picker .colorblender-picker-full-picker-section .colorblender-picker-full-picker-item {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+}
+
+.colorblender-picker .colorblender-picker-full-picker-section .colorblender-picker-input {
+  text-align: center;
+}
+
+.colorblender-picker .colorblender-picker-full-picker-section .colorblender-picker-input-text::after {
+  font-size: 0.7rem;
+  text-align: center;
+  margin-top: 3px;
+  color: var(--colorblender-internal-legend);
+}
+
+.colorblender-picker .colorblender-picker-full-picker-section .colorblender-picker-input-rgb::after {
+  content: "RGB"
+}
+.colorblender-picker .colorblender-picker-full-picker-section .colorblender-picker-input-hsv::after {
+  content: "HSV"
+}
+.colorblender-picker .colorblender-picker-full-picker-section .colorblender-picker-input-hsl::after {
+  content: "HSL"
+}
+.colorblender-picker .colorblender-picker-full-picker-section .colorblender-picker-input-hex::after {
+  content: "HEX"
 }

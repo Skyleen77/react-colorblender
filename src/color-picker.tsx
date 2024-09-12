@@ -28,20 +28,21 @@ export const ColorPicker = memo(
     width = 250,
     hideAlpha = false,
     color,
+    height,
     onChange,
     className,
   }: ColorPickerProps) => {
     const [selectedModel, setSelectedModel] =
       useState<keyof typeof modelComponents>('Picker');
     const [selectModels, setSelectModels] = useState(false);
-    const height = useMemo(() => width / 1.67, [width]);
+    const internalHeight = useMemo(() => height ?? width / 1.67, [width]);
 
     const renderModel = () => {
       const Component = modelComponents[selectedModel].component;
 
       return (
         <Component
-          height={height}
+          height={internalHeight}
           width={width}
           hideAlpha={hideAlpha}
           color={color}

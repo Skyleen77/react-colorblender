@@ -285,3 +285,36 @@
 .colorblender-picker .colorblender-picker-full-picker-section .colorblender-picker-input-hex::after {
   content: "HEX"
 }
+
+.colorblender-picker .colorblender-picker-palette {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.4rem;
+  padding-bottom: 0.75rem;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.colorblender-picker .colorblender-picker-palette .colorblender-picker-palette-color {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 0.4rem;
+}
+
+.colorblender-picker .colorblender-picker-palette .colorblender-picker-palette-clear {
+  position: relative;
+  background-color: #fff;
+  background-image: linear-gradient(-45deg, rgba(57, 76, 96, .15)  25%, transparent 25%, transparent 75%, rgba(57, 76, 96, .15) 75%), linear-gradient(-45deg, rgba(57, 76, 96, .15) 25%, transparent 25%, transparent 75%, rgba(57, 76, 96, .15) 75%);
+  background-position: 0 0, 6px 6px;
+  background-size: 12px 12px;
+  overflow: hidden;
+}
+
+.colorblender-picker .colorblender-picker-palette .colorblender-picker-palette-clear span {
+  background-image: linear-gradient(-45deg, transparent calc(50% - 1.5px), #db142c calc(50% - 1.5px), #db142c calc(50% + 1.5px), transparent calc(50% + 1.5px));
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

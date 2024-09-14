@@ -27,6 +27,22 @@ export default function Home() {
         <ColorPicker
           color={color}
           onChange={setColor}
+          palette={[
+            '#ff0000',
+            '#00ff00',
+            '#0000ff',
+            '#ff0000',
+            '#00ff00',
+            '#0000ff',
+            '#ff0000',
+            '#00ff00',
+            '#0000ff',
+            '#ff0000',
+            '#00ff00',
+            '#0000ff',
+            '#ff0000',
+          ]}
+          onClear={() => setColor(toColor('#000000'))}
           className="border border-gray-700 dark"
         />
       </div>

@@ -19,10 +19,12 @@ export interface ColorPickerProps {
   color: Color;
   onChange: (color: Color, initialColor?: string) => void;
   className?: string;
+  palette?: string[];
+  onClear?: () => void;
 }
 
 export type ModelComponentProps = Omit<
-  Required<ColorPickerProps>,
+  Required<Omit<ColorPickerProps, 'palette' | 'onClear'>>,
   'className' | 'hideInput' | 'theme'
 > & {
   height: number;
